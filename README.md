@@ -47,15 +47,9 @@ Password : wantutri
 
 * Peminjam
 Username : 10969adrian
-Password : acumalaka
-
-Username : miawmiaw
-Password : adriannor
-
-Username : nanonano
-Password : sixseven
-
-Username : fufufafa
+Password : acumalaka || Username : miawmiaw
+Password : adriannor || Username : nanonano
+Password : sixseven || Username : fufufafa
 Password : fafafufu
 
 =============Struktur Database=============
