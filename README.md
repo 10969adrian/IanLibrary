@@ -60,8 +60,6 @@ Password : fafafufu
 
 =============Struktur Database=============
 
-Database : library
-Tabel yang digunakan:
 * user
 Menyimpan data pengguna sistem
 
