@@ -32,9 +32,7 @@ Peminjam
 3. Buat database baru di phpMyAdmin.
 4. Import file database `library.sql`.
 5. Sesuaikan konfigurasi database pada:
-6. 
-application/config/database.php
-
+6. application/config/database.php
 7. Jalankan aplikasi melalui browser:
 
 http://localhost/nama_project
