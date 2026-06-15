@@ -33,9 +33,7 @@ Peminjam
 4. Import file database `library.sql`.
 5. Sesuaikan konfigurasi database pada:
 6. application/config/database.php
-7. Jalankan aplikasi melalui browser:
-
-http://localhost/nama_project
+7. Jalankan aplikasi melalui browser (http://localhost/nama_project)
 
 =============Akun Login=============
 
