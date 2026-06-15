@@ -42,13 +42,11 @@
 
         <div class="card shadow-sm review-card w-100" style="font-size:13px;">
 
-            <!-- 📕 COVER -->
             <img src="<?= base_url('sneat/assets/upload/cover/'.$u['cover']) ?>"
                  class="review-img card-img-top">
 
             <div class="card-body p-2 review-body">
 
-                <!-- 👤 USER -->
                 <div class="d-flex align-items-center gap-2 mb-1">
                     <?php if($u['foto']){ ?>
                         <img src="<?= base_url('sneat/assets/upload/user/'.$u['foto']) ?>"
@@ -62,24 +60,20 @@
                     </small>
                 </div>
 
-                <!-- ⭐ RATING -->
                 <div class="mb-1" style="font-size:14px;">
                     <?php for($i=1;$i<=5;$i++){ ?>
                         <span style="color:<?= ($i <= $u['rating']) ? '#f5c518' : '#ddd'; ?>">★</span>
                     <?php } ?>
                 </div>
 
-                <!-- 💬 ULASAN -->
                 <div class="review-text">
                     <?= $u['ulasan']; ?>
                 </div>
 
-                <!-- 📌 JUDUL -->
                 <small class="text-muted mt-auto d-block">
                     <?= $u['judul']; ?>
                 </small>
 
-                <!-- ✏️ ACTION -->
                 <?php if($u['userID'] == $this->session->userdata('userID')){ ?>
 
                     <div class="mt-2 d-flex gap-1 justify-content-center">
