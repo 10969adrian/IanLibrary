@@ -1,6 +1,8 @@
 =============Tentang Project Ini=============
 
-Ian's Library adalah Sistem Informasi Perpustakaan Berbasis Web adalah yang digunakan untuk mengelola data perpustakaan secara digital. Sistem ini mendukung pengelolaan buku, kategori, pengguna, peminjaman, ulasan buku, dan koleksi favorit.
+Ian's Library adalah Sistem Informasi Perpustakaan Berbasis Web yang digunakan untuk mengelola data perpustakaan secara digital. Sistem ini mendukung pengelolaan buku, kategori, pengguna, peminjaman, ulasan buku, dan koleksi favorit.
+
+Project ini dibuat sebagai tugas Mata Kuliah Web Framework Semester 4 yang diampu oleh Bapak Frengklin Matatula, S.Kom., M.M.Si. di STMIK Palangkaraya.
 
 =============Fitur Utama=============
 
@@ -85,3 +87,4 @@ Menyimpan daftar buku favorit pengguna
 =============Pengembang=============
 Nama : Adriannor
 NIM : E2457401008
+Program Studi : Manajemen Informatika
