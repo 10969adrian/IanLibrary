@@ -6,9 +6,8 @@
         <div class="row g-2">
 
             <div class="col-md">
-                <input type="text" name="judul" class="form-control"
-                       placeholder="Cari Judul"
-                       value="<?= $this->input->get('judul'); ?>">
+                <input type="text" name="judul" class="form-control" placeholder="Cari Judul"
+                    value="<?= $this->input->get('judul'); ?>">
             </div>
 
             <div class="col-md">
@@ -53,8 +52,9 @@
             </thead>
 
             <tbody>
-                <?php if(!empty($riwayat)){ ?>
-                    <?php $no=1; foreach($riwayat as $row){ ?>
+                <?php if (!empty($riwayat)) { ?>
+                    <?php $no = 1;
+                    foreach ($riwayat as $row) { ?>
 
                         <tr>
                             <td><?= $no++; ?></td>
@@ -64,7 +64,7 @@
                             <td><?= $row['tanggalPeminjaman']; ?></td>
 
                             <td>
-                                <?php if(!empty($row['tanggalPengembalian'])){ ?>
+                                <?php if (!empty($row['tanggalPengembalian'])) { ?>
 
                                     <?= $row['tanggalPengembalian']; ?>
 
@@ -78,21 +78,21 @@
                             <td>
                                 <?php $status = $row['statusPeminjaman']; ?>
 
-                                <?php if($status=='Proses'){ ?>
+                                <?php if ($status == 'Proses') { ?>
                                     <span class="badge bg-warning text-dark">Proses</span>
 
-                                <?php } elseif($status=='Dipinjam'){ ?>
+                                <?php } elseif ($status == 'Dipinjam') { ?>
                                     <span class="badge bg-primary">Dipinjam</span>
 
-                                <?php } elseif($status=='Pengembalian Diajukan'){ ?>
+                                <?php } elseif ($status == 'Pengembalian Diajukan') { ?>
                                     <span class="badge bg-info">
                                         Pengembalian Diajukan
                                     </span>
 
-                                <?php } elseif($status=='Dikembalikan'){ ?>
+                                <?php } elseif ($status == 'Dikembalikan') { ?>
                                     <span class="badge bg-success">Selesai</span>
 
-                                <?php } elseif($status=='Ditolak'){ ?>
+                                <?php } elseif ($status == 'Ditolak') { ?>
                                     <span class="badge bg-danger">Ditolak</span>
 
                                 <?php } else { ?>
@@ -102,29 +102,26 @@
                             </td>
 
                             <td>
-                                <?php if($status == 'Proses'){ ?>
+                                <?php if ($status == 'Proses') { ?>
 
-                                    <a href="<?= base_url('peminjam/peminjaman/batal/'.$row['peminjamanID']) ?>"
-                                       class="btn btn-sm btn-danger"
-                                       onclick="return confirm('Yakin mau batalkan?')">
+                                    <a href="<?= base_url('peminjam/peminjaman/batal/' . $row['peminjamanID']) ?>"
+                                        class="btn btn-sm btn-danger" onclick="return confirm('Yakin mau batalkan?')">
 
-                                       Batalkan
+                                        Batalkan
 
                                     </a>
 
-                                <?php } elseif($status == 'Dipinjam'){ ?>
+                                <?php } elseif ($status == 'Dipinjam') { ?>
 
-                                    <!-- <a href="<?= base_url('peminjam/peminjaman/ajukan_kembali/'.$row['peminjamanID']) ?>"
+                                    <!-- <a href="<?= base_url('peminjam/peminjaman/ajukan_kembali/' . $row['peminjamanID']) ?>"
                                        class="btn btn-sm btn-warning"
                                        onclick="return confirm('Ajukan pengembalian buku ini?')">
 
                                        Ajukan Kembali
 
                                     </a> -->
-                                    <button type="button"
-                                            class="btn btn-sm btn-warning"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#modalKembali<?= $row['peminjamanID'] ?>">
+                                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="#modalKembali<?= $row['peminjamanID'] ?>">
                                         Ajukan Kembali
                                     </button>
                                 <?php } else { ?>
@@ -151,158 +148,144 @@
         </table>
     </div>
 </div>
-<!-- 🔥 MODAL PENGEMBALIAN -->
-<?php foreach($riwayat as $row){ ?>
+<?php foreach ($riwayat as $row) { ?>
+    <?php
 
-<?php
+    $tanggalPinjam = strtotime($row['tanggalPeminjaman']);
 
-$tanggalPinjam = strtotime($row['tanggalPeminjaman']);
+    $jatuhTempo = !empty($row['tanggalJatuhTempo'])
+        ? strtotime($row['tanggalJatuhTempo'])
+        : strtotime('+7 days', $tanggalPinjam);
 
-// 🔥 fallback kalau data lama belum punya tanggal tempo
-$jatuhTempo = !empty($row['tanggalJatuhTempo'])
-    ? strtotime($row['tanggalJatuhTempo'])
-    : strtotime('+7 days', $tanggalPinjam);
+    $hariIni = strtotime($today);
 
-$hariIni = strtotime($today);
+    $lamaPinjam = floor(($hariIni - $tanggalPinjam) / (60 * 60 * 24));
 
-// 🔥 lama pinjam
-$lamaPinjam = floor(($hariIni - $tanggalPinjam) / (60*60*24));
+    if ($lamaPinjam < 0) {
+        $lamaPinjam = 0;
+    }
 
-if($lamaPinjam < 0){
-    $lamaPinjam = 0;
-}
+    $telat = 0;
 
-// 🔥 telat
-$telat = 0;
+    if ($hariIni > $jatuhTempo) {
 
-if($hariIni > $jatuhTempo){
+        $telat = floor(($hariIni - $jatuhTempo) / (60 * 60 * 24));
 
-    $telat = floor(($hariIni - $jatuhTempo) / (60*60*24));
+    }
 
-}
+    $denda = $telat * 2000;
 
-// 🔥 denda 2000 / hari
-$denda = $telat * 2000;
+    ?>
 
-?>
+    <div class="modal fade" id="modalKembali<?= $row['peminjamanID'] ?>" tabindex="-1">
 
-<div class="modal fade"
-     id="modalKembali<?= $row['peminjamanID'] ?>"
-     tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-    <div class="modal-dialog">
-        <div class="modal-content">
+                <form action="<?= base_url('peminjam/peminjaman/ajukan_kembali/' . $row['peminjamanID']) ?>" method="post">
 
-            <form action="<?= base_url('peminjam/peminjaman/ajukan_kembali/'.$row['peminjamanID']) ?>"
-                  method="post">
+                    <div class="modal-header">
 
-                <div class="modal-header">
+                        <h5 class="modal-title">
+                            Rincian Pengembalian
+                        </h5>
 
-                    <h5 class="modal-title">
-                        Rincian Pengembalian
-                    </h5>
-
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal">
-                    </button>
-
-                </div>
-
-                <div class="modal-body">
-
-                    <div class="mb-3">
-                        <strong>Judul Buku</strong><br>
-                        <?= $row['judul']; ?>
-                    </div>
-
-                    <div class="mb-3">
-                        <strong>Tanggal Pinjam</strong><br>
-                        <?= $row['tanggalPeminjaman']; ?>
-                    </div>
-
-                    <div class="mb-3">
-                        <strong>Jatuh Tempo (Max 7 Hari)</strong><br>
-                        <?= date('Y-m-d', $jatuhTempo); ?>
-                    </div>
-
-                    <div class="mb-3">
-                        <strong>Lama Dipinjam</strong><br>
-                        <?= $lamaPinjam; ?> Hari
-                    </div>
-
-                    <div class="mb-3">
-
-                        <strong>Keterlambatan</strong><br>
-
-                        <?php if($telat > 0){ ?>
-
-                            <span class="text-danger">
-                                <?= $telat; ?> Hari
-                            </span>
-
-                        <?php } else { ?>
-
-                            <span class="text-success">
-                                Tidak Terlambat
-                            </span>
-
-                        <?php } ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
 
                     </div>
 
-                    <div class="mb-3">
+                    <div class="modal-body">
 
-                        <strong>Estimasi Denda</strong><br>
+                        <div class="mb-3">
+                            <strong>Judul Buku</strong><br>
+                            <?= $row['judul']; ?>
+                        </div>
 
-                        <?php if($denda > 0){ ?>
+                        <div class="mb-3">
+                            <strong>Tanggal Pinjam</strong><br>
+                            <?= $row['tanggalPeminjaman']; ?>
+                        </div>
 
-                            <span class="text-danger fw-bold">
-                                Rp <?= number_format($denda,0,',','.'); ?>
-                            </span>
+                        <div class="mb-3">
+                            <strong>Jatuh Tempo (Max 7 Hari)</strong><br>
+                            <?= date('Y-m-d', $jatuhTempo); ?>
+                        </div>
 
-                        <?php } else { ?>
+                        <div class="mb-3">
+                            <strong>Lama Dipinjam</strong><br>
+                            <?= $lamaPinjam; ?> Hari
+                        </div>
 
-                            <span class="text-success fw-bold">
-                                Rp 0
-                            </span>
+                        <div class="mb-3">
 
-                        <?php } ?>
+                            <strong>Keterlambatan</strong><br>
+
+                            <?php if ($telat > 0) { ?>
+
+                                <span class="text-danger">
+                                    <?= $telat; ?> Hari
+                                </span>
+
+                            <?php } else { ?>
+
+                                <span class="text-success">
+                                    Tidak Terlambat
+                                </span>
+
+                            <?php } ?>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <strong>Estimasi Denda</strong><br>
+
+                            <?php if ($denda > 0) { ?>
+
+                                <span class="text-danger fw-bold">
+                                    Rp <?= number_format($denda, 0, ',', '.'); ?>
+                                </span>
+
+                            <?php } else { ?>
+
+                                <span class="text-success fw-bold">
+                                    Rp 0
+                                </span>
+
+                            <?php } ?>
+
+                        </div>
+
+                        <small class="text-muted">
+                            *Maksimal peminjaman 7 hari<br>
+                            *Denda keterlambatan Rp2.000 / hari<br>
+                            <!-- *Denda final akan dikonfirmasi admin<br> -->
+                            *Denda dibayar saat mengembalikan buku ke Perpustakaan
+                        </small>
 
                     </div>
 
-                    <small class="text-muted">
-                        *Maksimal peminjaman 7 hari<br>
-                        *Denda keterlambatan Rp2.000 / hari<br>
-                        <!-- *Denda final akan dikonfirmasi admin<br> -->
-                        *Denda dibayar saat mengembalikan buku ke Perpustakaan
-                    </small>
+                    <div class="modal-footer">
 
-                </div>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
 
-                <div class="modal-footer">
+                            Batal
 
-                    <button type="button"
-                            class="btn btn-outline-secondary"
-                            data-bs-dismiss="modal">
+                        </button>
 
-                        Batal
+                        <button type="submit" class="btn btn-primary">
 
-                    </button>
+                            Ajukan Pengembalian
 
-                    <button type="submit"
-                            class="btn btn-primary">
+                        </button>
 
-                        Ajukan Pengembalian
+                    </div>
 
-                    </button>
+                </form>
 
-                </div>
-
-            </form>
-
+            </div>
         </div>
     </div>
-</div>
 
 <?php } ?>
