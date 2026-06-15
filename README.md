@@ -1,15 +1,7 @@
-=============Sistem Informasi Perpustakaan Berbasis Web=============
-
-Sistem Informasi Perpustakaan Berbasis Web adalah aplikasi yang digunakan untuk mengelola data perpustakaan secara digital. Sistem ini mendukung pengelolaan buku, kategori, pengguna, peminjaman, ulasan buku, dan koleksi favorit.
-Aplikasi dikembangkan menggunakan:
-* PHP
-* CodeIgniter 3
-* MySQL
-* Bootstrap 5
-* XAMPP
+=============Tentang Project Ini=============
+Ian's Library adalah Sistem Informasi Perpustakaan Berbasis Web adalah yang digunakan untuk mengelola data perpustakaan secara digital. Sistem ini mendukung pengelolaan buku, kategori, pengguna, peminjaman, ulasan buku, dan koleksi favorit.
 
 =============Fitur Utama=============
-
 Admin
 * Kelola Data Buku
 * Kelola Kategori Buku
@@ -30,7 +22,6 @@ Peminjam
 * Melihat Riwayat Peminjaman
 
 =============Instalasi=============
-
 1. Salin folder project ke dalam folder `htdocs`.
 2. Jalankan Apache dan MySQL melalui XAMPP.
 3. Buat database baru di phpMyAdmin.
@@ -44,7 +35,6 @@ application/config/database.php
 http://localhost/nama_project
 
 =============Akun Login=============
-
 * Admin
 Username : ianstar
 Password : 12345678
@@ -88,6 +78,5 @@ Menyimpan rating dan ulasan pengguna terhadap buku
 Menyimpan daftar buku favorit pengguna
 
 =============Pengembang=============
-
 Nama : Adriannor
 NIM : E2457401008
