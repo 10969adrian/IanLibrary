@@ -4,8 +4,7 @@
     <form action="<?= base_url('peminjam/peminjaman/ajukan/'.$buku->bukuID) ?>" method="post">
 
         <div class="row">
-            
-            <!-- KIRI -->
+
             <div class="col-md-8">
 
                 <div class="mb-3">
@@ -40,7 +39,6 @@
                     <input type="text" class="form-control" readonly value="<?= $buku->tahunTerbit; ?>">
                 </div>
 
-                <!-- 🔥 sekarang tanggal optional -->
                 <div class="mb-3">
                     <label class="form-label">Tanggal Peminjaman</label>
                     <input type="date" name="tanggalPeminjaman" class="form-control">
@@ -57,7 +55,6 @@
 
             </div>
 
-            <!-- KANAN -->
             <div class="col-md-4 text-center">
                 <label class="form-label d-block">Cover</label>
                 <?php if($buku->cover){ ?>
