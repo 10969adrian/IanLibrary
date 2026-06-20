@@ -292,8 +292,7 @@ class Peminjaman extends CI_Controller
     $this->db->where('statusPeminjaman', 'Pengembalian Diajukan');
     $this->db->update('peminjaman', [
         'statusPeminjaman' => 'Dikembalikan',
-        'tanggalPengembalian' => date('Y-m-d'),
-        'denda' => $denda
+        'tanggalPengembalian' => date('Y-m-d')
     ]);
 
     // update buku jadi tersedia
