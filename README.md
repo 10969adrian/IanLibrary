@@ -4,6 +4,11 @@ Ian's Library adalah Sistem Informasi Perpustakaan Berbasis Web yang digunakan u
 
 Project ini dibuat sebagai tugas Mata Kuliah Web Framework Semester 4 yang diampu oleh Bapak Frengklin Matatula, S.Kom., M.M.Si. di STMIK Palangkaraya.
 
+=============Link Project=============
+
+* Github:	github.com/10969adrian/IanLibrary
+* Web:	libraryian.site.je/
+  
 =============Fitur Utama=============
 
 Admin
