@@ -209,8 +209,7 @@
                      style="min-height:420px;">
 
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d559.3562770979054!2d113.91874870530381!3d-2.2876831179949364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de34da7d31adc15%3A0x1796312d5f906a8a!2sMama%20Ryan-Dira!5e0!3m2!1sid!2sid!4v1777737154664!5m2!1sid!2sid"
-                        width="100%"
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.844525810634!2d113.9251489748569!3d-2.2122974977681418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dfcb25f99d33d21%3A0xadc1afed75fb1b97!2sPerpustakaan%20Daerah%20Kalimantan%20Tengah!5e0!3m2!1sid!2sid!4v1781756566349!5m2!1sid!2sid"                        width="100%"
                         height="100%"
                         style="border:0; border-radius:14px;"
                         allowfullscreen=""
